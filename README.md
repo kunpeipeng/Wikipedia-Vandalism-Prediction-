@@ -97,13 +97,13 @@ cart_baseline
 Accuracy was used to select the optimal model using the largest value. As a result, 0.002755906 was selected as the optimal cp value to test the model. 
 
 
-# Let's plot the CART tree. Seems like the 'LoggedIn', 'NumWordsA', and 'NumWordsR' are selected by the model to be the top predictors.
+# Plot the CART tree. Seems like the 'LoggedIn', 'NumWordsA', and 'NumWordsR' are selected by the model to be the top predictors.
 ```{r}
 par(mar=c(1,1,1,1))
 prp(cart_baseline$finalModel)
 ```
 
-# Let's check the accuracy of the model on the test set.
+# Check the accuracy of the model on the test set.
 ```{r}
 #Predict the values of Vandal using the testing data set as input of our trained model WikiTree. Note that the default setting of the predict function below assumes a 0.5 threshold and use 0.5 as a probability benchmark to predict 0 or 1 scores. 
 
@@ -119,7 +119,7 @@ WikiTree.Accuracy
 In the confusion matrix above, we can see that the model accuracy is $0.7128117$, meaning our model accurately predicted about 71.28% of all vandalism on the page. 
 
 
-## Now we have a basline CART model, let's build a more sophisticated random forest model to predict "Vandal", using all the other variables as independent variables. 
+## Step 3: Now we have a basline CART model, let's build a more sophisticated random forest model to predict "Vandal", using all the other variables as independent variables. 
 ```{r}
 #install.packages("randomForest")
 library(randomForest)
