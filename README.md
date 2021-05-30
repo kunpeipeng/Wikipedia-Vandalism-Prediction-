@@ -24,7 +24,7 @@ View(Wiki)
 #number of cases detected = 1815
 Number_of_cases_detected <- sum(Wiki$Vandal)
 ```
-### the average number of words added is about 4.05 words, while the average number of words removed is about 3.5 words. 
+The average number of words added is about 4.05 words, while the average number of words removed is about 3.5 words. 
 
 ```{r}
 #finding the mean for column NumWordsAdded and NumWordsRemoved
@@ -33,7 +33,7 @@ Mean.word.rmv <- mean(Wiki$NumWordsRemoved)
 
 ```
 
-### Let's explore the correlation between variables for a bit. From the correlation outputs below, we can see that variable "LoggedIn" is most correlated with variable Vandal as their correlation coefficient is about -0.43.  
+Let's explore the correlation between variables for a bit. From the correlation outputs below, we can see that variable "LoggedIn" is most correlated with variable Vandal as their correlation coefficient is about -0.43.  
 ```{r}
 cor(Wiki)
 
@@ -76,7 +76,7 @@ Wiki.Train <- subset(Wiki, Split == TRUE)
 Wiki.Test <- subset(Wiki, Split == FALSE)
 ```
 
-### Here, I Built a CART model as a baseline to predict Vandal, using all of the other variables as independent variables.
+Here, I Built a CART model as a baseline to predict Vandal, using all of the other variables as independent variables.
 
 ```{r}
 #Now we need to tune the CART model using caret package. Here we used a 10 fold valiadation to find the best parameter for our data. 
@@ -94,16 +94,16 @@ cart_baseline=caret::train(make.names(Vandal)~.,data=Wiki.Train,method="rpart",t
 cart_baseline
 
 ```
-Accuracy was used to select the optimal model using the largest value. As a result, 0.002755906 was selected as the optimal cp value to test the model. 
+Note: Accuracy was used to select the optimal model using the largest value. As a result, 0.002755906 was selected as the optimal cp value to test the model. 
 
 
-### Plot the CART tree. Seems like the 'LoggedIn', 'NumWordsA', and 'NumWordsR' are selected by the model to be the top predictors.
+Plot the CART tree. Seems like the 'LoggedIn', 'NumWordsA', and 'NumWordsR' are selected by the model to be the top predictors.
 ```{r}
 par(mar=c(1,1,1,1))
 prp(cart_baseline$finalModel)
 ```
 
-### Check the accuracy of the model on the test set.
+Check the accuracy of the model on the test set.
 ```{r}
 #Predict the values of Vandal using the testing data set as input of our trained model WikiTree. Note that the default setting of the predict function below assumes a 0.5 threshold and use 0.5 as a probability benchmark to predict 0 or 1 scores. 
 
